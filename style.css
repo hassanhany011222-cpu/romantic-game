@@ -1,0 +1,1079 @@
+```css
+/* =====================================================
+   إعدادات عامة
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: "Cairo", sans-serif;
+
+    color: #ffffff;
+
+    /* خلفية ليلية - ليست وردية */
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(91, 66, 150, 0.35),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(34, 88, 130, 0.3),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #080b20,
+            #101735,
+            #11152d
+        );
+
+    background-attachment: fixed;
+}
+
+
+
+/* =====================================================
+   الصفحات
+===================================================== */
+
+.page {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: scale(0.96);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        visibility 0.8s ease;
+
+    overflow-y: auto;
+
+    z-index: 5;
+}
+
+
+.page.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+
+
+/* =====================================================
+   الكارت الزجاجي
+===================================================== */
+
+.glass-card {
+
+    width: min(650px, 95%);
+
+    padding: 45px 35px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.16);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    position: relative;
+
+    z-index: 10;
+
+    animation: cardAppear 1s ease;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+
+/* =====================================================
+   الصفحة الأولى
+===================================================== */
+
+.big-heart {
+
+    font-size: 75px;
+
+    margin-bottom: 15px;
+
+    animation:
+        heartBeat 1.5s infinite;
+
+}
+
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+.glass-card h1 {
+
+    font-family: "Amiri", serif;
+
+    font-size: clamp(28px, 5vw, 42px);
+
+    margin-bottom: 15px;
+
+}
+
+
+.glass-card > p {
+
+    color: rgba(255, 255, 255, 0.8);
+
+    line-height: 2;
+
+    font-size: 17px;
+
+}
+
+
+
+/* =====================================================
+   الأزرار
+===================================================== */
+
+.main-btn,
+.love-btn {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: "Cairo", sans-serif;
+
+    color: white;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.main-btn {
+
+    margin-top: 30px;
+
+    padding: 15px 35px;
+
+    border-radius: 50px;
+
+    font-size: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7257c7,
+            #3c7bb5
+        );
+
+    box-shadow:
+        0 10px 30px rgba(70, 80, 180, 0.35);
+
+}
+
+
+.main-btn:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(70, 80, 180, 0.5);
+
+}
+
+
+.main-btn:active {
+
+    transform: scale(0.95);
+
+}
+
+
+
+/* =====================================================
+   صفحة الأسئلة
+===================================================== */
+
+.quiz-card {
+
+    max-width: 700px;
+
+}
+
+
+.question-counter {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 75px;
+
+    padding: 7px 15px;
+
+    margin-bottom: 25px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+    color:
+        rgba(255, 255, 255, 0.8);
+
+}
+
+
+#question-text {
+
+    font-family: "Amiri", serif;
+
+    font-size: clamp(24px, 5vw, 34px);
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+
+}
+
+
+.answers-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+}
+
+
+.answer-btn {
+
+    width: 100%;
+
+    padding: 15px 20px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    font-family: "Cairo", sans-serif;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        all 0.25s ease;
+
+}
+
+
+.answer-btn:hover {
+
+    transform: translateX(-5px);
+
+    background:
+        rgba(255, 255, 255, 0.13);
+
+    border-color:
+        rgba(255, 255, 255, 0.3);
+
+}
+
+
+.answer-btn:active {
+
+    transform: scale(0.97);
+
+}
+
+
+
+/* =====================================================
+   صفحة الاعتراف
+===================================================== */
+
+.confession-card {
+
+    max-height: 95vh;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+
+}
+
+
+.confession-card::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+
+.confession-card::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(255, 255, 255, 0.2);
+
+    border-radius: 20px;
+
+}
+
+
+
+/* =====================================================
+   العداد
+===================================================== */
+
+.love-timer {
+
+    margin-bottom: 30px;
+
+}
+
+
+.timer-spanish {
+
+    direction: ltr;
+
+    font-family: "Amiri", serif;
+
+    font-size: 22px;
+
+    color:
+        rgba(255, 255, 255, 0.95);
+
+    line-height: 1.8;
+
+}
+
+
+.timer-arabic {
+
+    font-family: "Cairo", sans-serif;
+
+    font-size: 16px;
+
+    color:
+        rgba(255, 255, 255, 0.65);
+
+    margin-top: 5px;
+
+}
+
+
+#timer {
+
+    margin: 18px auto;
+
+    width: fit-content;
+
+    padding: 8px 25px;
+
+    border-radius: 18px;
+
+    font-family: monospace;
+
+    font-size: 35px;
+
+    letter-spacing: 4px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.08);
+
+}
+
+
+.timer-note {
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color:
+        rgba(255, 255, 255, 0.5);
+
+}
+
+
+
+/* =====================================================
+   الصورة
+===================================================== */
+
+.photo-wrapper {
+
+    width: 190px;
+
+    height: 190px;
+
+    margin: 0 auto 30px;
+
+    padding: 5px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d8c4ff,
+            #ffffff,
+            #6fa9d8
+        );
+
+    box-shadow:
+        0 0 40px rgba(190, 180, 255, 0.25);
+
+    animation:
+        photoGlow 3s infinite ease-in-out;
+
+}
+
+
+.photo-wrapper img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: block;
+
+}
+
+
+@keyframes photoGlow {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 25px rgba(190, 180, 255, 0.2);
+    }
+
+    50% {
+        transform: scale(1.03);
+        box-shadow:
+            0 0 45px rgba(190, 180, 255, 0.4);
+    }
+
+}
+
+
+
+/* =====================================================
+   الرسالة الإسبانية
+===================================================== */
+
+.spanish-message {
+
+    direction: ltr;
+
+    margin-bottom: 25px;
+
+}
+
+
+.spanish-message h1 {
+
+    font-family: "Amiri", serif;
+
+    font-size: 34px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.spanish-message p {
+
+    font-family: "Amiri", serif;
+
+    font-size: 20px;
+
+    line-height: 1.9;
+
+    color:
+        rgba(255, 255, 255, 0.9);
+
+    margin-bottom: 10px;
+
+}
+
+
+
+/* =====================================================
+   الترجمة العربية
+===================================================== */
+
+.arabic-translation {
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.1);
+
+    padding-top: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.arabic-translation h2 {
+
+    font-family: "Amiri", serif;
+
+    font-size: 28px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.arabic-translation p {
+
+    font-size: 16px;
+
+    line-height: 2;
+
+    color:
+        rgba(255, 255, 255, 0.7);
+
+    margin-bottom: 8px;
+
+}
+
+
+
+/* =====================================================
+   زر بحبك
+===================================================== */
+
+.love-btn {
+
+    padding: 17px 45px;
+
+    border-radius: 50px;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7d5bc6,
+            #4e91c8
+        );
+
+    box-shadow:
+        0 12px 35px rgba(80, 90, 190, 0.4);
+
+    animation:
+        loveButtonPulse 2s infinite;
+
+}
+
+
+.love-btn:hover {
+
+    transform: translateY(-5px) scale(1.03);
+
+    box-shadow:
+        0 18px 45px rgba(80, 90, 190, 0.55);
+
+}
+
+
+.love-btn:active {
+
+    transform: scale(0.9);
+
+}
+
+
+@keyframes loveButtonPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 12px 35px rgba(80, 90, 190, 0.35);
+    }
+
+    50% {
+        box-shadow:
+            0 12px 50px rgba(120, 100, 220, 0.65);
+    }
+
+}
+
+
+
+/* =====================================================
+   الرسالة النهائية
+===================================================== */
+
+.final-message {
+
+    display: none;
+
+    margin-top: 35px;
+
+    animation:
+        finalMessageAppear 1.2s ease;
+
+}
+
+
+.final-message.show {
+
+    display: block;
+
+}
+
+
+.final-heart {
+
+    font-size: 75px;
+
+    animation:
+        heartBeat 1.2s infinite;
+
+}
+
+
+.final-message h2 {
+
+    font-family: "Amiri", serif;
+
+    font-size: 45px;
+
+    margin: 10px 0;
+
+}
+
+
+.final-message p {
+
+    line-height: 2;
+
+    font-size: 17px;
+
+    color:
+        rgba(255, 255, 255, 0.8);
+
+}
+
+
+.final-message .date {
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    opacity: 0.5;
+
+    letter-spacing: 3px;
+
+}
+
+
+@keyframes finalMessageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+
+/* =====================================================
+   القلوب المتطايرة
+===================================================== */
+
+#floating-hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+}
+
+
+.floating-heart {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    opacity: 0;
+
+    animation:
+        floatHeart linear forwards;
+
+    user-select: none;
+
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(0.7);
+
+        opacity: 0;
+
+    }
+
+    10% {
+
+        opacity: 0.75;
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-50vh)
+            translateX(30px)
+            rotate(15deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh)
+            translateX(-40px)
+            rotate(-20deg)
+            scale(0.8);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   قلوب انفجار زر بحبك
+===================================================== */
+
+.explosion-heart {
+
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    font-size: 25px;
+
+    animation:
+        heartExplosion 2s ease-out forwards;
+
+}
+
+
+@keyframes heartExplosion {
+
+    0% {
+
+        transform:
+            translate(0, 0)
+            scale(0.4);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            rotate(var(--rotate))
+            scale(1.5);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   تأثير عند الضغط
+===================================================== */
+
+.screen-flash {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9998;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    pointer-events: none;
+
+    animation:
+        screenFlash 0.6s ease-out forwards;
+
+}
+
+
+@keyframes screenFlash {
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
+}
+
+
+
+/* =====================================================
+   الموبايل
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .page {
+
+        padding: 15px;
+
+        align-items: center;
+
+    }
+
+
+    .glass-card {
+
+        width: 100%;
+
+        padding: 30px 20px;
+
+        border-radius: 25px;
+
+    }
+
+
+    .big-heart {
+
+        font-size: 60px;
+
+    }
+
+
+    .glass-card h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .glass-card > p {
+
+        font-size: 15px;
+
+    }
+
+
+    #question-text {
+
+        font-size: 25px;
+
+    }
+
+
+    .answer-btn {
+
+        padding: 14px;
+
+        font-size: 15px;
+
+    }
+
+
+    .photo-wrapper {
+
+        width: 155px;
+
+        height: 155px;
+
+    }
+
+
+    .timer-spanish {
+
+        font-size: 18px;
+
+    }
+
+
+    .timer-arabic {
+
+        font-size: 14px;
+
+    }
+
+
+    #timer {
+
+        font-size: 30px;
+
+    }
+
+
+    .spanish-message p {
+
+        font-size: 18px;
+
+    }
+
+
+    .arabic-translation p {
+
+        font-size: 15px;
+
+    }
+
+
+    .love-btn {
+
+        width: 90%;
+
+        font-size: 18px;
+
+    }
+
+
+    .final-message h2 {
+
+        font-size: 38px;
+
+    }
+
+}
+```
