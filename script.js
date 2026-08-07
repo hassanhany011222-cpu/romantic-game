@@ -1,73 +1,18 @@
-```javascript
+```javascript id="9qf4xk"
 /* =====================================================
-   ROMANTIC LOVE GAME
-   الإصدار النهائي - الجزء الرابع
+   لعبة الاعتراف ❤️
+   JavaScript
 ===================================================== */
 
 
 /* =====================================================
-   إعدادات قابلة للتعديل
-===================================================== */
-
-const herName = "حبيبتي";
-
-const totalQuestions = 5;
-
-const confessionDate = "08 • 08 • 2026";
-
-
-
-/* =====================================================
-   عناصر الصفحة
-===================================================== */
-
-const welcomePage =
-    document.getElementById("welcome-page");
-
-const quizPage =
-    document.getElementById("quiz-page");
-
-const confessionPage =
-    document.getElementById("confession-page");
-
-const startButton =
-    document.getElementById("start-btn");
-
-const questionNumber =
-    document.getElementById("question-number");
-
-const questionText =
-    document.getElementById("question-text");
-
-const answersContainer =
-    document.getElementById("answers-container");
-
-const loveButton =
-    document.getElementById("love-btn");
-
-const finalMessage =
-    document.getElementById("final-message");
-
-const loveSong =
-    document.getElementById("love-song");
-
-const timerElement =
-    document.getElementById("timer");
-
-const floatingHearts =
-    document.getElementById("floating-hearts");
-
-
-
-/* =====================================================
-   الأسئلة
+   1 — الأسئلة
 ===================================================== */
 
 const questions = [
 
     {
-        question:
-            "إيه أكتر حاجة بتحبيها في علاقتنا؟ ❤️",
+        question: "إيه أكتر حاجة بتحبيها في علاقتنا؟ ❤️",
 
         answers: [
             "كلامنا سوا ❤️",
@@ -79,8 +24,7 @@ const questions = [
 
 
     {
-        question:
-            "لو تقدري ترجعي تعيشي لحظة واحدة بينا تاني، تختاري إيه؟",
+        question: "لو تقدري ترجعي تعيشي لحظة واحدة بينا تاني، تختاري إيه؟",
 
         answers: [
             "أول مرة اتكلمنا ❤️",
@@ -92,8 +36,7 @@ const questions = [
 
 
     {
-        question:
-            "لما ييجي اسمي قدامك فجأة، أول حاجة بتحسي بيها إيه؟",
+        question: "لما ييجي اسمي قدامك فجأة، أول حاجة بتحسي بيها إيه؟",
 
         answers: [
             "ببتسم ❤️",
@@ -105,8 +48,7 @@ const questions = [
 
 
     {
-        question:
-            "تتمني إيه لحكايتنا في الأيام الجاية؟",
+        question: "تتمني إيه لحكايتنا في الأيام الجاية؟",
 
         answers: [
             "نفضل قريبين ❤️",
@@ -118,8 +60,7 @@ const questions = [
 
 
     {
-        question:
-            "آخر سؤال... مستعدة تعرفي ليه عملتلك اللعبة دي؟ 👀❤️",
+        question: "آخر سؤال... مستعدة تعرفي ليه عملتلك اللعبة دي؟ 👀❤️",
 
         answers: [
             "أيوه ❤️",
@@ -134,41 +75,79 @@ const questions = [
 
 
 /* =====================================================
-   المتغيرات
+   2 — عناصر الصفحة
 ===================================================== */
 
-let currentQuestion = 0;
+const homePage =
+    document.getElementById("home");
 
-let timerStarted = false;
+const questionsPage =
+    document.getElementById("questions");
 
-let timerSeconds = 15 * 60;
+const confessionPage =
+    document.getElementById("confession");
 
-let loveClicked = false;
+const startButton =
+    document.getElementById("startButton");
 
-let answerLocked = false;
+const currentQuestionElement =
+    document.getElementById("currentQuestion");
+
+const questionElement =
+    document.getElementById("question");
+
+const answersElement =
+    document.getElementById("answers");
+
+const timerElement =
+    document.getElementById("timer");
+
+const loveButton =
+    document.getElementById("loveButton");
+
+const finalMessage =
+    document.getElementById("finalMessage");
+
+const loveSong =
+    document.getElementById("loveSong");
+
+const heartsContainer =
+    document.getElementById("hearts-container");
 
 
 
 /* =====================================================
-   الانتقال بين الصفحات
+   3 — متغيرات اللعبة
 ===================================================== */
 
-function showPage(pageToShow) {
+let currentQuestion = 0;
 
-    const pages =
-        document.querySelectorAll(".page");
+let answerLocked = false;
+
+let timerStarted = false;
+
+let loveClicked = false;
 
 
-    pages.forEach(page => {
 
-        page.classList.remove("active");
+/* =====================================================
+   4 — تغيير الصفحة
+===================================================== */
 
-    });
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
 
 
     setTimeout(() => {
 
-        pageToShow.classList.add("active");
+        page.classList.add("active");
 
     }, 100);
 
@@ -177,62 +156,65 @@ function showPage(pageToShow) {
 
 
 /* =====================================================
-   بدء اللعبة
+   5 — بدء اللعبة
 ===================================================== */
 
 startButton.addEventListener(
     "click",
-    () => {
-
-        currentQuestion = 0;
-
-        answerLocked = false;
-
-        showPage(quizPage);
-
-        displayQuestion();
-
-    }
+    startGame
 );
+
+
+function startGame() {
+
+    currentQuestion = 0;
+
+    answerLocked = false;
+
+    showPage(questionsPage);
+
+    showQuestion();
+
+}
 
 
 
 /* =====================================================
-   عرض السؤال
+   6 — عرض السؤال
 ===================================================== */
 
-function displayQuestion() {
+function showQuestion() {
 
     const current =
         questions[currentQuestion];
 
 
-    questionNumber.textContent =
+    currentQuestionElement.textContent =
         currentQuestion + 1;
 
 
-    questionText.textContent =
+    questionElement.textContent =
         current.question;
 
 
-    answersContainer.innerHTML = "";
+    answersElement.innerHTML = "";
 
 
     /* -----------------------------------------
        تأثير ظهور السؤال
     ----------------------------------------- */
 
-    questionText.style.opacity = "0";
+    questionElement.style.opacity = "0";
 
-    questionText.style.transform =
+    questionElement.style.transform =
         "translateY(15px)";
 
 
     setTimeout(() => {
 
-        questionText.style.opacity = "1";
+        questionElement.style.opacity = "1";
 
-        questionText.style.transform =
+        questionElement.style.transform =
             "translateY(0)";
 
     }, 100);
@@ -251,25 +233,16 @@ function displayQuestion() {
 
 
             button.className =
-                "answer-btn";
+                "answer";
 
 
             button.textContent =
                 answer;
 
 
-            button.style.opacity = "0";
-
-            button.style.transform =
-                "translateY(15px)";
-
-
             setTimeout(() => {
 
-                button.style.opacity = "1";
-
-                button.style.transform =
-                    "translateY(0)";
+                button.classList.add("show");
 
             }, 150 + index * 100);
 
@@ -278,13 +251,13 @@ function displayQuestion() {
                 "click",
                 () => {
 
-                    selectAnswer(button);
+                    chooseAnswer(button);
 
                 }
             );
 
 
-            answersContainer.appendChild(
+            answersElement.appendChild(
                 button
             );
 
@@ -296,10 +269,10 @@ function displayQuestion() {
 
 
 /* =====================================================
-   اختيار الإجابة
+   7 — اختيار الإجابة
 ===================================================== */
 
-function selectAnswer(button) {
+function chooseAnswer(button) {
 
     if (answerLocked)
         return;
@@ -308,20 +281,7 @@ function selectAnswer(button) {
     answerLocked = true;
 
 
-    /* -----------------------------------------
-       تأثير الضغط
-    ----------------------------------------- */
-
-    button.style.transform =
-        "scale(0.96)";
-
-
-    button.style.background =
-        "rgba(255,255,255,0.18)";
-
-
-    button.style.borderColor =
-        "rgba(255,255,255,0.4)";
+    button.classList.add("selected");
 
 
     setTimeout(() => {
@@ -335,78 +295,41 @@ function selectAnswer(button) {
 
             answerLocked = false;
 
-            displayQuestion();
+            showQuestion();
 
         }
 
         else {
 
-            finishQuiz();
+            finishQuestions();
 
         }
 
-    }, 450);
+    }, 500);
 
 }
 
 
 
 /* =====================================================
-   انتهاء الأسئلة
+   8 — انتهاء الأسئلة
 ===================================================== */
 
-function finishQuiz() {
+function finishQuestions() {
 
     showPage(confessionPage);
 
-    startLoveTimer();
-
-    revealConfession();
+    startTimer();
 
 }
 
 
 
 /* =====================================================
-   ظهور الاعتراف تدريجيًا
+   9 — عداد 15 دقيقة
 ===================================================== */
 
-function revealConfession() {
-
-    const confessionCard =
-        document.querySelector(
-            ".confession-card"
-        );
-
-
-    confessionCard.style.opacity = "0";
-
-    confessionCard.style.transform =
-        "translateY(25px)";
-
-
-    setTimeout(() => {
-
-        confessionCard.style.transition =
-            "all 1.2s ease";
-
-
-        confessionCard.style.opacity = "1";
-
-        confessionCard.style.transform =
-            "translateY(0)";
-
-    }, 300);
-
-}
-
-
-
-/* =====================================================
-   عداد 15 دقيقة
-===================================================== */
-
-function startLoveTimer() {
+function startTimer() {
 
     if (timerStarted)
         return;
@@ -415,45 +338,31 @@ function startLoveTimer() {
     timerStarted = true;
 
 
-    timerSeconds = 15 * 60;
+    let remainingSeconds =
+        15 * 60;
 
 
-    const countdown =
+    updateTimer(
+        remainingSeconds
+    );
+
+
+    const timer =
         setInterval(() => {
 
-            let minutes =
-                Math.floor(
-                    timerSeconds / 60
-                );
+            remainingSeconds--;
 
 
-            let seconds =
-                timerSeconds % 60;
+            updateTimer(
+                remainingSeconds
+            );
 
 
-            minutes =
-                String(minutes)
-                    .padStart(2, "0");
+            if (
+                remainingSeconds <= 0
+            ) {
 
-
-            seconds =
-                String(seconds)
-                    .padStart(2, "0");
-
-
-            timerElement.textContent =
-                `${minutes}:${seconds}`;
-
-
-            timerSeconds--;
-
-
-            if (timerSeconds < 0) {
-
-                clearInterval(countdown);
-
-                timerElement.textContent =
-                    "00:00";
+                clearInterval(timer);
 
             }
 
@@ -463,19 +372,46 @@ function startLoveTimer() {
 
 
 
+function updateTimer(seconds) {
+
+    const minutes =
+        Math.floor(seconds / 60);
+
+
+    const remaining =
+        seconds % 60;
+
+
+    const formattedMinutes =
+        String(minutes)
+            .padStart(2, "0");
+
+
+    const formattedSeconds =
+        String(remaining)
+            .padStart(2, "0");
+
+
+    timerElement.textContent =
+        `${formattedMinutes}:${formattedSeconds}`;
+
+}
+
+
+
 /* =====================================================
-   القلوب المتطايرة
+   10 — القلوب المتطايرة
 ===================================================== */
 
 const heartSymbols = [
 
     "❤️",
-    "🤍",
-    "💜",
-    "💙",
     "💕",
     "💗",
     "💖",
+    "🤍",
+    "💜",
+    "💙",
     "✨"
 
 ];
@@ -501,17 +437,20 @@ function createFloatingHeart() {
         ];
 
 
+    /* مكان عشوائي */
+
     heart.style.left =
         Math.random() * 100 + "%";
 
 
-    const size =
-        Math.random() * 18 + 14;
-
+    /* حجم عشوائي */
 
     heart.style.fontSize =
-        size + "px";
+        Math.random() * 18 + 14
+        + "px";
 
+
+    /* سرعة عشوائية */
 
     const duration =
         Math.random() * 7 + 6;
@@ -521,7 +460,7 @@ function createFloatingHeart() {
         duration + "s";
 
 
-    floatingHearts.appendChild(
+    heartsContainer.appendChild(
         heart
     );
 
@@ -536,6 +475,8 @@ function createFloatingHeart() {
 
 
 
+/* إنشاء قلوب باستمرار */
+
 setInterval(
     createFloatingHeart,
     550
@@ -543,18 +484,35 @@ setInterval(
 
 
 
+/* قلوب أول ما الموقع يفتح */
+
+for (
+    let i = 0;
+    i < 12;
+    i++
+) {
+
+    setTimeout(
+        createFloatingHeart,
+        i * 250
+    );
+
+}
+
+
+
 /* =====================================================
-   تشغيل الأغنية بعد الضغط فقط
+   11 — زر "بحبك"
 ===================================================== */
 
 loveButton.addEventListener(
     "click",
-    startFinalConfession
+    finalConfession
 );
 
 
 
-function startFinalConfession() {
+function finalConfession() {
 
     if (loveClicked)
         return;
@@ -563,32 +521,26 @@ function startFinalConfession() {
     loveClicked = true;
 
 
+
     /* -----------------------------------------
        تشغيل الأغنية
-       لا يوجد تشغيل تلقائي
+       
+       الأغنية لن تعمل إلا هنا
+       بعد الضغط على الزر
     ----------------------------------------- */
 
     loveSong.currentTime = 0;
 
 
-    const playPromise =
-        loveSong.play();
+    loveSong.play()
+        .catch(error => {
 
+            console.log(
+                "تعذر تشغيل الأغنية:",
+                error
+            );
 
-    if (playPromise !== undefined) {
-
-        playPromise.catch(
-            error => {
-
-                console.log(
-                    "تعذر تشغيل الأغنية:",
-                    error
-                );
-
-            }
-        );
-
-    }
+        });
 
 
 
@@ -609,7 +561,7 @@ function startFinalConfession() {
         loveButton.style.display =
             "none";
 
-    }, 300);
+    }, 350);
 
 
 
@@ -617,7 +569,7 @@ function startFinalConfession() {
        وميض الشاشة
     ----------------------------------------- */
 
-    createScreenFlash();
+    createFlash();
 
 
 
@@ -639,6 +591,7 @@ function startFinalConfession() {
             "show"
         );
 
+
         finalMessage.scrollIntoView({
             behavior: "smooth",
             block: "center"
@@ -651,7 +604,7 @@ function startFinalConfession() {
 
 
 /* =====================================================
-   انفجار القلوب
+   12 — انفجار القلوب
 ===================================================== */
 
 function createHeartExplosion() {
@@ -669,6 +622,9 @@ function createHeartExplosion() {
         buttonRect.top +
         buttonRect.height / 2;
 
+
+
+    /* عدد القلوب */
 
     const numberOfHearts = 100;
 
@@ -704,6 +660,9 @@ function createHeartExplosion() {
             centerY + "px";
 
 
+
+        /* اتجاه عشوائي */
+
         const angle =
             Math.random() *
             Math.PI * 2;
@@ -721,6 +680,7 @@ function createHeartExplosion() {
         const y =
             Math.sin(angle) *
             distance;
+
 
 
         heart.style.setProperty(
@@ -742,7 +702,8 @@ function createHeartExplosion() {
 
 
         heart.style.fontSize =
-            `${Math.random() * 20 + 18}px`;
+            Math.random() * 20 + 18
+            + "px";
 
 
         document.body.appendChild(
@@ -763,17 +724,17 @@ function createHeartExplosion() {
 
 
 /* =====================================================
-   وميض الشاشة
+   13 — وميض الشاشة
 ===================================================== */
 
-function createScreenFlash() {
+function createFlash() {
 
     const flash =
         document.createElement("div");
 
 
     flash.className =
-        "screen-flash";
+        "flash";
 
 
     document.body.appendChild(
@@ -788,51 +749,4 @@ function createScreenFlash() {
     }, 700);
 
 }
-
-
-
-/* =====================================================
-   قلوب عند بداية الموقع
-===================================================== */
-
-for (
-    let i = 0;
-    i < 12;
-    i++
-) {
-
-    setTimeout(
-        createFloatingHeart,
-        i * 250
-    );
-
-}
-
-
-
-/* =====================================================
-   تعديل اسمها تلقائيًا
-===================================================== */
-
-function updateHerName() {
-
-    const nameElements =
-        document.querySelectorAll(
-            ".her-name"
-        );
-
-
-    nameElements.forEach(
-        element => {
-
-            element.textContent =
-                herName;
-
-        }
-    );
-
-}
-
-
-updateHerName();
 ```
