@@ -3,14 +3,14 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>حكايتنا ❤️</title>
+    <title>إلى حبيبتي ❤️</title>
 
-    <!-- الخطوط -->
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
 
@@ -18,342 +18,323 @@
           href="https://fonts.gstatic.com"
           crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- ملف التصميم -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
 
 
 <body>
 
-    <!-- =========================================
-         خلفية القلوب المتطايرة
-    ========================================== -->
 
-    <div id="floating-hearts"></div>
+<!-- ==========================================
+     القلوب المتطايرة
+========================================== -->
+
+<div id="hearts-container"></div>
 
 
 
-    <!-- =========================================
-         الصفحة الأولى
-    ========================================== -->
+<!-- ==========================================
+     الصفحة الأولى
+========================================== -->
 
-    <section id="welcome-page"
-             class="page active">
+<section id="home" class="page active">
 
-        <div class="glass-card">
+    <div class="card">
 
-            <div class="big-heart">
+        <div class="main-heart">
+            ❤️
+        </div>
+
+        <h1>
+            عندي حاجة صغيرة ليكي
+        </h1>
+
+        <p>
+            بس قبل ما تعرفيها...
+            لازم تجاوبي على كام سؤال صغير ❤️
+        </p>
+
+        <button id="startButton">
+            ابدأي ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     صفحة الأسئلة
+========================================== -->
+
+<section id="questions" class="page">
+
+    <div class="card">
+
+        <div class="progress">
+
+            <span id="currentQuestion">
+                1
+            </span>
+
+            <span>
+                من 5
+            </span>
+
+        </div>
+
+
+        <h2 id="question">
+            السؤال هنا
+        </h2>
+
+
+        <div id="answers">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     صفحة الاعتراف
+========================================== -->
+
+<section id="confession" class="page">
+
+    <div class="card confession-card">
+
+
+        <!-- العداد -->
+
+        <div class="timer-box">
+
+            <div class="timer-heart">
+                ❤️
+            </div>
+
+            <p class="spanish">
+
+                Desde el momento en que
+                escuché esas palabras de ti...
+
+            </p>
+
+            <p class="arabic">
+
+                منذ اللحظة التي سمعت فيها
+                منكِ تلك الكلمة...
+
+            </p>
+
+            <div id="timer">
+                15:00
+            </div>
+
+            <small>
+
+                El tiempo comienza aquí...
+                <br>
+                يبدأ الوقت من هنا...
+
+            </small>
+
+        </div>
+
+
+
+        <!-- الصورة -->
+
+        <div class="photo">
+
+            <img src="images/her-photo.jpg"
+                 alt="صورتها">
+
+        </div>
+
+
+
+        <!-- الاعتراف الإسباني -->
+
+        <div class="spanish confession-text">
+
+            <h1>
+
+                Mi amor ❤️
+
+            </h1>
+
+            <p>
+
+                Hoy escuché de ti una palabra
+                que siempre quise escuchar.
+
+            </p>
+
+            <p>
+
+                Y quiero que sepas que tu confesión
+                hizo que este día fuera inolvidable
+                para mí.
+
+            </p>
+
+            <p>
+
+                Desde hoy, esta fecha tendrá
+                un lugar especial en mi corazón.
+
+            </p>
+
+            <strong>
+
+                Te quiero más de lo que
+                las palabras pueden explicar. ❤️
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- الترجمة العربية -->
+
+        <div class="arabic confession-text">
+
+            <h2>
+
+                حبيبتي ❤️
+
+            </h2>
+
+            <p>
+
+                النهارده سمعت منكِ كلمة
+                كنت دايمًا نفسي أسمعها.
+
+            </p>
+
+            <p>
+
+                وعاوزك تعرفي إن اعترافك
+                خلّى اليوم ده مستحيل أنساه.
+
+            </p>
+
+            <p>
+
+                ومن النهارده، التاريخ ده
+                هيبقى له مكان خاص في قلبي.
+
+            </p>
+
+            <strong>
+
+                بحبك أكتر مما ممكن الكلام يوصف. ❤️
+
+            </strong>
+
+        </div>
+
+
+
+        <!-- زر بحبك -->
+
+        <button id="loveButton">
+
+            ❤️ بحبك ❤️
+
+        </button>
+
+
+
+        <!-- الرسالة النهائية -->
+
+        <div id="finalMessage">
+
+            <div class="big-final-heart">
                 ❤️
             </div>
 
             <h1>
-                عندي لكِ حاجة صغيرة...
+                Te quiero ❤️
             </h1>
 
-            <p>
-                قبل ما تعرفي هي إيه،
-                عندي كام سؤال صغير ليكي ❤️
-            </p>
-
-            <button id="start-btn"
-                    class="main-btn">
-
-                ابدأي اللعبة ✨
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         صفحة الأسئلة
-    ========================================== -->
-
-    <section id="quiz-page"
-             class="page">
-
-        <div class="glass-card quiz-card">
-
-            <!-- رقم السؤال -->
-
-            <div class="question-counter">
-
-                <span id="question-number">
-                    1
-                </span>
-
-                <span>
-                    / 5
-                </span>
-
-            </div>
-
-
-            <!-- السؤال -->
-
-            <h2 id="question-text">
-                السؤال
+            <h2>
+                بحبك ❤️
             </h2>
 
+            <p>
 
-            <!-- الإجابات -->
+                Y quiero que recuerdes
+                este día para siempre.
 
-            <div id="answers-container"
-                 class="answers-container">
+            </p>
 
-                <!--
-                    JavaScript
-                    سيضيف الإجابات هنا
-                -->
+            <p>
+
+                وعاوزك تفتكري اليوم ده
+                دايمًا.
+
+            </p>
+
+            <p>
+
+                Porque hoy comenzó
+                algo muy especial para mí. ❤️
+
+            </p>
+
+            <p>
+
+                لأن النهارده بدأ شيء
+                مميز جدًا بالنسبة لي. ❤️
+
+            </p>
+
+            <h2>
+
+                Te quiero, mi amor ❤️
+
+            </h2>
+
+            <div class="date">
+
+                08 • 08 • 2026
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
 
-    <!-- =========================================
-         صفحة الاعتراف
-    ========================================== -->
 
-    <section id="confession-page"
-             class="page">
+<!-- ==========================================
+     الأغنية
+========================================== -->
 
-        <div class="glass-card confession-card">
+<audio id="loveSong">
 
+    <source src="music/love-song.mp3"
+            type="audio/mpeg">
 
-            <!-- =================================
-                 عداد ربع الساعة
-            ================================== -->
+</audio>
 
-            <div class="love-timer">
 
-                <p class="timer-spanish">
 
-                    Desde el momento en que
-                    escuché esas palabras de ti ❤️
-
-                </p>
-
-
-                <p class="timer-arabic">
-
-                    منذ اللحظة التي سمعت فيها
-                    منكِ تلك الكلمة ❤️
-
-                </p>
-
-
-                <div id="timer">
-
-                    15:00
-
-                </div>
-
-
-                <p class="timer-note">
-
-                    El tiempo comienza aquí...
-                    <br>
-
-                    يبدأ الوقت من هنا...
-
-                </p>
-
-            </div>
-
-
-
-            <!-- =================================
-                 صورتها
-            ================================== -->
-
-            <div class="photo-wrapper">
-
-                <img id="her-photo"
-                     src="images/her-photo.jpg"
-                     alt="صورتها">
-
-            </div>
-
-
-
-            <!-- =================================
-                 الرسالة الإسبانية
-            ================================== -->
-
-            <div class="spanish-message">
-
-                <h1>
-                    Mi amor ❤️
-                </h1>
-
-
-                <p>
-
-                    Hoy escuché de ti una palabra
-                    que siempre quise escuchar.
-
-                </p>
-
-
-                <p>
-
-                    Y quiero que sepas que tu confesión
-                    hizo que este día fuera inolvidable
-                    para mí.
-
-                </p>
-
-
-                <p>
-
-                    Te quiero más de lo que las palabras
-                    pueden explicar.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- =================================
-                 الترجمة العربية
-            ================================== -->
-
-            <div class="arabic-translation">
-
-                <h2>
-                    حبيبتي ❤️
-                </h2>
-
-
-                <p>
-
-                    النهارده سمعت منك كلمة
-                    كنت دايمًا نفسي أسمعها.
-
-                </p>
-
-
-                <p>
-
-                    وعاوزك تعرفي إن اعترافك
-                    خلّى اليوم ده مستحيل أنساه.
-
-                </p>
-
-
-                <p>
-
-                    بحبك أكتر مما ممكن
-                    الكلام يوصف.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- =================================
-                 زر الاعتراف
-            ================================== -->
-
-            <button id="love-btn"
-                    class="love-btn">
-
-                ❤️ بحبك ❤️
-
-            </button>
-
-
-
-            <!-- =================================
-                 الرسالة النهائية
-            ================================== -->
-
-            <div id="final-message"
-                 class="final-message">
-
-
-                <div class="final-heart">
-
-                    ❤️
-
-                </div>
-
-
-                <h2>
-
-                    Te quiero ❤️
-
-                </h2>
-
-
-                <p>
-
-                    بحبك ❤️
-
-                </p>
-
-
-                <p>
-
-                    واعترافك النهارده
-                    هيفضل من أجمل الحاجات
-                    اللي حصلتلي.
-
-                </p>
-
-
-                <p class="date">
-
-                    08 • 08 • 2026
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================================
-         الموسيقى
-         
-         ملاحظة مهمة:
-         الموسيقى لن تعمل تلقائيًا.
-         JavaScript سيشغلها فقط
-         عند الضغط على زر "بحبك".
-    ========================================== -->
-
-    <audio id="love-song"
-           preload="auto">
-
-        <source src="music/love-song.mp3"
-                type="audio/mpeg">
-
-        المتصفح لا يدعم تشغيل الصوت.
-
-    </audio>
-
-
-
-    <!-- =========================================
-         JavaScript
-    ========================================== -->
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 
