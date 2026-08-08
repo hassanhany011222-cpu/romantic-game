@@ -330,70 +330,43 @@ function finishQuestions() {
 
 function startTimer() {
 
-    if (timerStarted)
-        return;
-
+    if (timerStarted) return;
 
     timerStarted = true;
 
+    // بداية الاعتراف: 8 أغسطس 2026 الساعة 2:00 صباحًا
+    const startTime = new Date(2026, 7, 8, 2, 0, 0);
 
-    let remainingSeconds =
-        15 * 60;
+    function updateElapsedTime() {
 
+        const now = new Date();
 
-    updateTimer(
-        remainingSeconds
-    );
+        let difference = Math.floor(
+            (now - startTime) / 1000
+        );
 
+        if (difference < 0) {
+            difference = 0;
+        }
 
-    const timer =
-        setInterval(() => {
+        const hours = Math.floor(difference / 3600);
 
-            remainingSeconds--;
+        const minutes = Math.floor(
+            (difference % 3600) / 60
+        );
 
+        const seconds = difference % 60;
 
-            updateTimer(
-                remainingSeconds
-            );
+        const h = String(hours).padStart(2, "0");
+        const m = String(minutes).padStart(2, "0");
+        const s = String(seconds).padStart(2, "0");
 
+        timerElement.textContent = `${h}:${m}:${s}`;
+    }
 
-            if (
-                remainingSeconds <= 0
-            ) {
+    updateElapsedTime();
 
-                clearInterval(timer);
-
-            }
-
-        }, 1000);
-
-}
-
-
-
-function updateTimer(seconds) {
-
-    const minutes =
-        Math.floor(seconds / 60);
-
-
-    const remaining =
-        seconds % 60;
-
-
-    const formattedMinutes =
-        String(minutes)
-            .padStart(2, "0");
-
-
-    const formattedSeconds =
-        String(remaining)
-            .padStart(2, "0");
-
-
-    timerElement.textContent =
-        `${formattedMinutes}:${formattedSeconds}`;
-
+    setInterval(updateElapsedTime, 1000);
 }
 
 
